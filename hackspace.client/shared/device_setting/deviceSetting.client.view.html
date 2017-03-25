@@ -1,0 +1,20 @@
+<div class="container">
+  <button class="btn btn-sm btn-primary btn-theme btn-device btn-manage" ng-click="goback()">Back</button>
+  <form action="" name="deviceForm" class="form-signin" ng-submit="editDevice()">
+
+    <h4 class="device_heading">Edit device</h4><br><br>
+
+    <label for="inputDeviceLocation" class="sr-only">Device Location</label>
+    <input ng-model="device.location" type="text" id="inputDeviceLocation" class="form-control form-add-device" placeholder="Device Location">
+
+    <label for="inputCollectInterval" class="sr-only">Collecting Interval</label>
+    <input ng-model="device.collectInterval" type="number" min="0" step="1" id="inputCollectInterval" class="form-control form-add-device form-interval" placeholder="Collecting Interval">
+    <p class="interval-unit">minutes</p><br>
+
+    <div ng-init="device.accessibility = 'public'"></div>
+    <label class="radio-inline"><input type="radio" name="accessibility" ng-model="device.accessibility" value="public">Public</label>
+    <label class="radio-inline"><input type="radio" name="accessibility" ng-model="device.accessibility" value="private">Private</label>
+
+    <button class="btn btn-lg btn-primary btn-block btn-theme btn-add-device" type="submit">Update</button>
+  </form>
+</div>

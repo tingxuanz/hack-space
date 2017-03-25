@@ -1,0 +1,27 @@
+{
+  "name": "hackspace",
+  "homepage": "https://github.com/CarlXue/ArduinoUoM",
+  "authors": [
+    "Song Xue <sxue1@student.unimelb.edu.au>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angular2#^1.4.9",
+    "bootstrap": "v4.0.0-alpha.2",
+    "angular-route": "^1.4.9",
+    "Chart.js": "^1.0.2"
+  }
+}

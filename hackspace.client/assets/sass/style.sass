@@ -1,0 +1,203 @@
+///////////
+//Variables
+///////////
+
+$theme_color: #46E800
+$white: #ffffff
+$dark_grey: #333
+$theme_font: 'Exo'
+
+///////
+//mixin
+///////
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+//////////////
+//Global style
+//////////////
+
+body
+  font-family: $theme_font, sans-serif
+
+///////////////
+//nav bar style
+///////////////
+
+.nav_logo_small
+  max-width: 2.5em
+  float: left
+  padding: 0 5px 0 5px
+
+
+.theme-color
+  color: $theme_color
+
+.nav_highlight
+  color: $theme_color
+  text-decoration: none
+
+//////////////
+//button style
+//////////////
+
+.btn-theme
+  background-color: $white
+  color: $dark_grey
+
+
+.btn-theme:hover
+  background-color: $theme_color
+  color: #ffffff
+
+
+.btn-auth
+  margin: 1em auto 2em auto
+  max-width: 6em
+  background-color: silver
+
+
+.btn-device
+  max-width: 6em
+  background-color: silver
+  float: right
+  vertical-align: middle
+
+
+.btn-add-device
+  max-width: 7em
+  background-color: silver
+  margin-left: auto
+  margin-right: auto
+  margin-top: 1em
+
+////////////////////
+//Input number style
+////////////////////
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+  -webkit-appearance: none
+  margin: 0
+
+////////////////////////
+//Field Validation style
+////////////////////////
+.ng-invalid.ng-dirty
+  border: 2px solid red
+
+
+.ng-valid.ng-dirty
+  border: 2px solid lawngreen
+
+
+form.ng-dirty.ng-invalid
+  border: none
+
+
+form.ng-dirty.ng-valid
+  border: none
+
+
+.form-add-device
+  margin-bottom: 1em
+
+
+input
+  margin-top: 2px
+  margin-bottom: 2px
+
+/////////////////
+//data page style
+/////////////////
+.device_heading
+  float: left
+
+
+.active
+  background-color: $theme_color
+
+
+.device-table-text
+  text-align: left
+
+
+.table-striped tbody tr.table-row
+  background-color: transparent
+
+
+.dataview-toggle
+  display: inline
+  margin-left: 1em
+  margin-right: 1em
+  padding: 1em
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  border-radius: 5px
+
+
+.dataview-toggle a
+  text-decoration: none
+
+
+.center
+  margin-left: auto
+  margin-right: auto
+
+
+.detailed_explianation
+  text-align: left
+  color: darkgrey
+  font-size: 10px
+
+
+.form-interval
+  max-width: 20em
+  display: inline
+  float: left
+
+
+.interval-unit
+  margin-top: 1.5em
+
+
+.btn-manage
+  border-color: grey
+
+.btn-condition
+  max-width: 8em
+  padding: 0
+  margin: 0
+  float: right
+
+.weather_forecast
+  font-size: 18px
+
+#dataTypeSelect, #dataTypeSelectSecond, #operationSelect, #operationSelectSecond ,#logicgateSelect, #preconfigActions, #outputCategory, #dateSelect, #timeSelect
+  color: black
+
+#ifcondition
+  float: left
+  label, select
+    float: left
+  select
+    margin-right: 2em
+  input
+    width: 20%
+    padding: 0rem .75rem
+    float: right
+
+.remove
+  background: #C76868
+  color: #FFF
+  font-weight: bold
+  font-size: 21px
+  border: 0
+  cursor: pointer
+  display: inline-block
+  padding: 4px 9px
+  vertical-align: top
+  line-height: 100%

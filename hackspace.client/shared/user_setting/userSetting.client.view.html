@@ -1,0 +1,21 @@
+<div class="container">
+  <h2 class="device_heading">
+    {{greeting}}
+  </h2>
+  <div ng-show="currentuser">
+    <button ng-show="currentuser" class="btn btn-lg btn-primary btn-block btn-theme btn-device" ng-click="logout()">Logout</button>
+    <br><br><br><br>
+    <form action="" class="form-signin" ng-submit="update()" novalidate>
+      <h2 class="form-signin-heading">
+        Update your information
+      </h2><br>
+      <p class="detailed_explianation">* If you don't want to change that field, type in "keep".</p>
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input ng-model="user.username" type="text" id="inputUsername" class="form-control" placeholder="Change Username" pattern=".{3,}">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input ng-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Change Password" pattern=".{4,}">
+      <button class="btn btn-lg btn-primary btn-block btn-theme btn-auth" type="submit">Update</button>
+    </form>
+  </div>
+
+</div>

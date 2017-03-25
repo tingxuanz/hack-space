@@ -1,0 +1,17 @@
+<div class="container">
+  <form action="" name="authForm" class="form-signin" ng-controller="SignupController as sc" ng-submit="authForm.$valid &&signup()"> 
+    <h2 class="form-signin-heading">
+      Sign up for FREE
+    </h2>
+    <label for="inputEmail" class="sr-only">Email Address</label>
+    <p class="detailed_explianation">* Only accept unimelb email domain</p>
+    <input ng-model="user.emailaddress" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus pattern="^[a-zA-Z0-9_\-.]*@(student.)?unimelb.edu.au$">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input ng-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required pattern=".{4,}">
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input ng-model="user.username" type="text" id="inputUsername" class="form-control" placeholder="Username" required pattern=".{3,}">
+    <!--<label for="inputStudentId" class="sr-only">Student ID (Optional)</label>-->
+    <!--<input ng-model="user.studentid" type="number" id="inputStudentId" class="form-control" placeholder="Student ID" pattern="^\d{6}$">-->
+    <button class="btn btn-lg btn-primary btn-block btn-theme btn-auth" type="submit">Sign up</button>
+  </form>
+</div>

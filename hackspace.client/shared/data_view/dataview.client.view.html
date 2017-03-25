@@ -1,0 +1,52 @@
+<div class="container" ng-controller="DataViewController">
+  <h2 class="device_heading">Detail: {{device_name}}</h2>
+
+  <button class="btn btn-sm btn-primary btn-theme btn-device btn-manage" ng-click="goback()">Back</button>
+  <button class="btn btn-sm btn-primary btn-theme btn-device btn-manage" ng-click="goManage()">Manage</button>
+  <br><br><br><br>
+  <section ng-init="tab = 1" style="margin-bottom: 2em;">
+    <ul class="nav nav-pills center">
+      <li class="dataview-toggle" ng-class="{ active:tab === 1 }">
+        <a href ng-click="tab = 1">Chart</a>
+      </li>
+      <li class="dataview-toggle" ng-class="{ active:tab === 2 }">
+        <a href ng-click="tab = 2">Table</a>
+      </li>
+    </ul>
+  </section>
+
+  <div class="panel" ng-show="tab === 1">
+    <div ng-repeat="label in attributes" ng-if="label !== 'createdAt'">
+      <!--Chart here-->
+      <h4 class="device_heading">{{label}}</h4>
+      <canvas id="dataChart{{$index}}" width="600" height="400"></canvas>
+    </div>
+
+
+  </div>
+  <div class="panel" ng-show="tab === 2">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th ng-repeat="attr in tablehead">{{attr}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="data in envData" class="table-row">
+          <td class="device-table-text" ng-repeat="attr in tablehead" ng-if="attr == 'createdAt'">{{data.get("createdAt") | date:'medium'}}</td>
+          <td class="device-table-text" ng-repeat="attr in tablehead" ng-if="attr !== 'createdAt'">{{data.get(attr)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h4>Weather: {{device_location}}</h4>
+  <h5 style="margin-top: 1em;"><span style="float: left;">Condition: {{weather}}</span> <span style="float: right">Current temperature: {{currentTemp}} &#8451</span></h5>
+  <br><br>
+  <h4>Weather forecast</h4>
+  <div ng-repeat="obj in forecast" style="float: left; margin-left: 5px; margin-right: 5px;">
+    <p class="weather_forecast">{{obj.timestamp}}</p>
+    <p class="weather_forecast">{{obj.forecastWeather}}</p>
+    <p class="weather_forecast">{{obj.forecastTemp}}&#8451</p>
+  </div>
+
+</div>

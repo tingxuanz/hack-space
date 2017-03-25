@@ -1,0 +1,72 @@
+<div class="container">
+  <h2 class="device_heading">
+    {{greeting}}
+  </h2>
+  <div ng-show="currentuser">
+    <button ng-show="currentuser" class="btn btn-lg btn-primary btn-block btn-theme btn-device" ng-click="addnew()">Add new</button>
+    <br><br>
+    <!--public data devices-->
+    <h4 class="device_heading">All public devices</h4><br><br>
+    <p class="detailed_explianation">You can check all the public data in the following list by clicking the 'check' button.</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Device Name</th>
+          <th>Location</th>
+          <th>Detail</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="device in public_device" class="table-row">
+          <td class="device-table-text">{{device.get("deviceName")}}</td>
+          <td class="device-table-text">{{device.get("deviceLocation")}}</td>
+          <td class="device-table-text"><a style="color: #2E9BFF;" ng-href="#/device/{{device.id}}">Check</a></td>
+          <td class="device-table-text"><a style="color: #2E9BFF;" ng-if="getUser(device)" ng-href="#/device/{{device.id}}/edit">Edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!--private data table-->
+    <h4 class="device_heading">Your private devices</h4><br><br>
+    <p class="detailed_explianation">The devices listed here can be only viewed by yourself. The data they collected are private as well</p>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Device Name</th>
+        <th>Location</th>
+        <th>Detail</th>
+        <th>Edit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="device in private_device" class="table-row">
+        <td class="device-table-text">{{device.get("deviceName")}}</td>
+        <td class="device-table-text">{{device.get("deviceLocation")}}</td>
+        <td class="device-table-text"><a style="color: #2E9BFF;" ng-href="#/device/{{device.id}}">Check</a></td>
+        <td class="device-table-text"><a style="color: #2E9BFF;" ng-href="#/device/{{device.id}}/edit">Edit</a></td>
+      </tr>
+      </tbody>
+    </table>
+    <!--adding device form-->
+    <!--<form action="" name="deviceForm" class="form-signin" ng-submit="deviceForm.$valid && addDevice()">-->
+      <!--<h4 class="device_heading">Add a device</h4><br><br>-->
+      <!--<p class="detailed_explianation">You can add your own configured device into the platform by filling this form.</p>-->
+      <!--<label for="inputDeviceName" class="sr-only">Device Name</label>-->
+      <!--<input ng-model="device.name" type="text" id="inputDeviceName" class="form-control form-add-device" placeholder="Device Name" required autofocus>-->
+
+      <!--<label for="inputDeviceLocation" class="sr-only">Device Location</label>-->
+      <!--<input ng-model="device.location" type="text" id="inputDeviceLocation" class="form-control form-add-device" placeholder="Device Location" required>-->
+
+      <!--<label for="inputCollectInterval" class="sr-only">Collecting Interval</label>-->
+      <!--<input ng-model="device.collectInterval" type="number" min="0" step="1" id="inputCollectInterval" class="form-control form-add-device form-interval" placeholder="Collecting Interval" required>-->
+      <!--<p class="interval-unit">minutes</p><br>-->
+
+      <!--<div ng-init="device.accessibility = 'public'"></div>-->
+      <!--<label class="radio-inline"><input type="radio" name="accessibility" ng-model="device.accessibility" value="public">Public</label>-->
+      <!--<label class="radio-inline"><input type="radio" name="accessibility" ng-model="device.accessibility" value="private">Private</label>-->
+
+      <!--<button class="btn btn-lg btn-primary btn-block btn-theme btn-add-device" type="submit">Add device</button>-->
+    <!--</form>-->
+  </div>
+
+</div>

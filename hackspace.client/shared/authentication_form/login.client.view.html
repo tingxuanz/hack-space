@@ -1,0 +1,12 @@
+<div class="container">
+  <form action="" class="form-signin" ng-controller="LoginController as lc" ng-submit="login()" novalidate>
+    <h2 class="form-signin-heading">
+      Please Log in
+    </h2>
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input ng-model="user.username" type="email" id="inputUsername" class="form-control" placeholder="Email" required autofocus pattern="^[a-zA-Z0-9_\-.]*@(student.)?unimelb.edu.au$">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input ng-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block btn-theme btn-auth" type="submit">Log in</button>
+  </form>
+</div>

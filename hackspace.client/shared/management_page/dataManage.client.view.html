@@ -1,0 +1,44 @@
+<div class="container" ng-controller="DataManageController">
+  <h2 class="device_heading">Manage: {{device_name}}</h2>
+  <button class="btn btn-sm btn-primary btn-theme btn-device btn-manage" ng-click="goback()">Back</button>
+  <br><br>
+  <form name="ruleForm" ng-submit="submitrule()">
+    <h3 class="device_heading">IF</h3>
+    <br><br>
+    <fieldset id="ifcondition" data-ng-repeat="choice in choices">
+      <label for="dataTypeSelect" class="sr-only">Data type:</label>
+      <select name="dataTypeSelect" id="dataTypeSelect" ng-options="option.name for option in choice.datatype.availableOptions track by option.id" ng-model="choice.datatype.selectedOption" class="col-md-4" required></select>
+
+      <label for="operationSelect" class="sr-only">Opeartion:</label>
+      <select name="operationSelect" id="operationSelect" ng-options="option.name for option in choice.operation.availableOptions track by option.id" ng-model="choice.operation.selectedOption" class="col-md-4" required></select>
+      <label for="inputConditionNumber" class="sr-only">Number</label>
+      <input ng-model="choice.datavalue" type="text" id="inputConditionNumber" class="form-control" placeholder="Value" required>
+
+      <br><br>
+      <label for="logicgateSelect" ng-hide="$last" class="sr-only">Logic gate:</label>
+      <select name="logicgateSelect" ng-hide="$last" id="logicgateSelect" ng-options="option.name for option in choice.logicgate.availableOptions track by option.id" ng-model="choice.logicgate.selectedOption" class="col-md-4"></select>
+      <!--<button class="btn btn-lg btn-primary btn-block btn-theme btn-condition" style="padding: 0;" type="button">Add Condition</button>-->
+      <br><br>
+      <button class="remove" ng-show="$last" ng-click="removeChoice()" style="float: right;">-</button>
+    </fieldset>
+    <button class="btn btn-sm btn-primary btn-theme" style="float: right; margin-right: 4em; position: relative; top: -2.1em;" type="button" ng-click="addNewCondition()">Add condition</button>
+    <h3 class="device_heading" style="margin-top: 1em; width: 100%; text-align: left;">THEN</h3>
+    <div>
+      <select id="outputCategory" ng-options="category as category.text for category in outputCategories.cast " ng-model="itemsuper" ng-change="changeData()" class="col-md-4">
+        <option value="" selected="selected">Select Output</option>
+      </select>
+      <h4 class="col-md-1" style="margin: 0 1em;">DO</h4>
+      <select id="preconfigActions" ng-options="type as type.text for type in types.cast " ng-model="selectedAction" ng-change="update()" class="col-md-4">
+      </select>
+    </div>
+    <h3 class="device_heading" style="margin-top: 1em; width: 100%; text-align: left;">AT</h3>
+
+    <label for="dateSelect" class="sr-only">Date:</label>
+    <select name="dateSelect" id="dateSelect" class="col-md-4" ng-options="option.name for option in date.availableOptions track by option.id" ng-model="date.selectedOption" required></select>
+
+    <label for="timeSelect" class="sr-only">Time:</label>
+    <select name="timeSelect" id="timeSelect" class="col-md-4" style="margin-left: 2em;" ng-options="option.name for option in time.availableOptions track by option.id" ng-model="time.selectedOption" required></select>
+    <div style="width: 100%; float: left;" class="row"><button class="btn btn-lg btn-primary btn-theme" style="margin-top: 1em;" type="submit">Hack it!</button></div>
+
+  </form>
+</div>
