@@ -187,7 +187,7 @@ angular.module('hackspace.dataview',[])
             }
         });
 
-        live query of real time status
+        //live query of real time status
         var Status = Parse.Object.extend("RealtimeStatus");
         var statusQuery = new Parse.Query(Status);
         statusQuery.equalTo('device_id', device_id);
