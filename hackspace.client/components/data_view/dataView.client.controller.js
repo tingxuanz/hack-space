@@ -198,8 +198,9 @@ angular.module('hackspace.dataview',[])
         subscription.on('update', (data) => {
           var status = data.get('data');
           console.log(status[0]);
-          $scope.status = status[0];
-          console.log("Status", $scope.status);
+          $scope.$apply(function () {
+            $scope.device_status = status;
+          });
         });
 
         $scope.goback = function(){
