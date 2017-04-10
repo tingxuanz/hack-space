@@ -7,9 +7,9 @@ angular.module('hackspace.dataview',[])
     .controller('DataViewController', function($scope, $location, $routeParams, $http, $rootScope, NgMap){
 
       NgMap.getMap().then(function(map) {
-          console.log(map.getCenter());
-          console.log('markers', map.markers);
-          console.log('shapes', map.shapes);
+          // console.log(map.getCenter());
+          // console.log('markers', map.markers);
+          // console.log('shapes', map.shapes);
         });
         //query the device name based on the device id
         var url = "http://api.openweathermap.org/data/2.5/";
@@ -31,7 +31,7 @@ angular.module('hackspace.dataview',[])
         deviceQuery.equalTo("objectId", device_id);
         deviceQuery.find({
             success:function(results){
-                console.log(results.length);
+                // console.log(results.length);
                 if (results.length > 0){
                     $scope.$apply(function(){
                         $scope.device_name = results[0].get("deviceName");
@@ -54,7 +54,7 @@ angular.module('hackspace.dataview',[])
                         dataQuery.equalTo("devicename", $scope.device_name);
                         dataQuery.find({
                             success:function(results){
-                              console.log("dataQuery" + results.length);
+                              // console.log("dataQuery" + results.length);
                                 $scope.$apply(function() {
 
                                     if (results.length > 0) {
@@ -192,8 +192,8 @@ angular.module('hackspace.dataview',[])
         initialStatusQuery.equalTo('device_id', device_id);
         initialStatusQuery.find({
           success: function(results) {
-            console.log(results);
-            var initial_status = results.get("data");
+            // console.log(results);
+            var initial_status = results[0].get("data");
             console.log("initial_status", initial_status);
             $scope.$apply(function () {
               $scope.device_initial_status = initial_status[initial_status.length - 1];
