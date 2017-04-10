@@ -52,6 +52,14 @@ app.use(mountPath, api);
 //   res.sendFile(path.join(__dirname, '/public/signup.html'));
 // });
 
+// curl -X POST \
+//   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
+//   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
+//   -H "Content-Type: application/json" \
+//   -d '{"device_id":"JYQ0OaGkAO", "class_id":[0], "data":[0.2]}' \
+//   https://tingxuanz.herokuapp.com/parse/classes/RealtimeStatus
+
+
 app.use(serveStatic('./hackspace.client', {'index': ['index.html', 'index.html']}));
 
 var port = process.env.PORT || 1337;
