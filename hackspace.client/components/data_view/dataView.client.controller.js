@@ -189,11 +189,11 @@ angular.module('hackspace.dataview',[])
 
         var HistoricalData = Parse.Object.extend("HistoricalData");
         var initialStatusQuery = new Parse.Query(HistoricalData);
-        initialStatusQuery.equalTo('objectId', "MP9Btl20yF");
+        initialStatusQuery.equalTo('device_id', device_id);
         initialStatusQuery.find({
           success: function(results) {
             console.log(results);
-            var initial_status = results.get('data_0');
+            var initial_status = results.get('data');
             console.log("initial_status", initial_status[initial_status.length - 1]);
             $scope.$apply(function () {
               $scope.device_initial_status = initial_status[initial_status.length - 1];
