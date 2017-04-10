@@ -35,7 +35,7 @@ angular.module('hackspace.dataview',[])
                 if (results.length > 0){
                     $scope.$apply(function(){
                         $scope.device_name = results[0].get("deviceName");
-                        console.log($scope.device_name);
+
                         $scope.device_location = results[0].get("deviceLocation");
 
                         $rootScope.dataCollection = {
@@ -189,7 +189,7 @@ angular.module('hackspace.dataview',[])
 
         var HistoricalData = Parse.Object.extend("HistoricalData");
         var initialStatusQuery = new Parse.Query(HistoricalData);
-        initialStatusQuery.equalTo('device_id', device_id);
+        initialStatusQuery.equalTo('objectId', "MP9Btl20yF");
         initialStatusQuery.find({
           success: function(results) {
             console.log(results);
