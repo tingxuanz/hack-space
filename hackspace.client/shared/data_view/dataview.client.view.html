@@ -12,6 +12,9 @@
       <li class="dataview-toggle" ng-class="{ active:tab === 2 }">
         <a href ng-click="tab = 2">Table</a>
       </li>
+      <li class="dataview-toggle" ng-class="{ active:tab === 3 }">
+        <a href ng-click="tab = 3">Map</a>
+      </li>
     </ul>
   </section>
 
@@ -21,9 +24,8 @@
       <h4 class="device_heading">{{label}}</h4>
       <canvas id="dataChart{{$index}}" width="600" height="400"></canvas>
     </div>
-
-
   </div>
+  
   <div class="panel" ng-show="tab === 2">
     <table class="table table-striped">
       <thead>
@@ -39,6 +41,17 @@
       </tbody>
     </table>
   </div>
+
+  <div class="panel" ng-show="tab === 3">
+    <div map-lazy-load="https://maps.google.com/maps/api/js">
+      <ng-map center="-37.799080,144.963115" zoom="16">
+        <marker position="-37.799080,144.963115" title="Hello World!"></marker>
+      </ng-map>
+    </div>
+  </div>
+
+
+
   <h4>Weather: {{device_location}}</h4>
   <h5 style="margin-top: 1em;"><span style="float: left;">Condition: {{weather}}</span> <span style="float: right">Current temperature: {{currentTemp}} &#8451</span></h5>
   <br><br>
@@ -48,5 +61,7 @@
     <p class="weather_forecast">{{obj.forecastWeather}}</p>
     <p class="weather_forecast">{{obj.forecastTemp}}&#8451</p>
   </div>
+
+
 
 </div>

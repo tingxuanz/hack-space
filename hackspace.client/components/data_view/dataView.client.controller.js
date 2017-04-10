@@ -1,7 +1,15 @@
 Parse.initialize("4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG", "jcAkgMYW30JRqAj7EQYtg4sxa2poD2d1nopy2s9x");
+Parse.serverURL = 'https://hack-space.herokuapp.com/parse';
+// Parse.serverURL = 'http://localhost:1337/parse';
 
 angular.module('hackspace.dataview',[])
-    .controller('DataViewController', function($scope, $location, $routeParams, $http, $rootScope){
+    .controller('DataViewController', function($scope, $location, $routeParams, $http, $rootScope, NgMap){
+
+      NgMap.getMap().then(function(map) {
+          console.log(map.getCenter());
+          console.log('markers', map.markers);
+          console.log('shapes', map.shapes);
+        });
         //query the device name based on the device id
         var url = "http://api.openweathermap.org/data/2.5/";
         var url_weather = "weather?q=";
@@ -22,10 +30,20 @@ angular.module('hackspace.dataview',[])
         deviceQuery.equalTo("objectId", device_id);
         deviceQuery.find({
             success:function(results){
+                console.log(results.length);
                 if (results.length > 0){
                     $scope.$apply(function(){
                         $scope.device_name = results[0].get("deviceName");
+                        console.log($scope.device_name);
                         $scope.device_location = results[0].get("deviceLocation");
+
+                        $rootScope.dataCollection = {
+                            deviceName: $scope.device_name,
+                            deviceID: device_id,
+                            // deviceAttributes: $scope.attributes
+                            deviceAttributes: []
+                        };
+
                         var requestUrl = url + url_weather + $scope.device_location + url_options;
                         var forecastUrl = url + url_forecast + $scope.device_location + url_options;
                         $scope.forecast = [];
@@ -35,7 +53,9 @@ angular.module('hackspace.dataview',[])
                         dataQuery.equalTo("devicename", $scope.device_name);
                         dataQuery.find({
                             success:function(results){
+                              console.log("dataQuery" + results.length);
                                 $scope.$apply(function() {
+
                                     if (results.length > 0) {
                                         $scope.envData = results.slice(Math.max(results.length - 10 , 1));
                                         //alert(JSON.stringify(results));
@@ -146,11 +166,11 @@ angular.module('hackspace.dataview',[])
                                             $scope.myWelcome = response;
                                         });
 
-                                        $rootScope.dataCollection = {
-                                            deviceName: $scope.device_name,
-                                            deviceID: device_id,
-                                            deviceAttributes: $scope.attributes
-                                        }
+                                        // $rootScope.dataCollection = {
+                                        //     deviceName: $scope.device_name,
+                                        //     deviceID: device_id,
+                                        //     deviceAttributes: $scope.attributes
+                                        // }
                                     }
                                 });
                             },
@@ -165,6 +185,15 @@ angular.module('hackspace.dataview',[])
                 alert("Error: " + error.code + " " + error.message);
             }
         });
+
+        //live query of real time status
+        // var Status = Parse.Object.extend("RealtimeStatus");
+        // var statusQuery = new Parse.Query(Status);
+        // statusQuery.equalTo('device_id', device_id);
+        // var subscription = statusQuery.subscribe();
+        // subscription.on('update', (data) => {
+        //   console.log('Status', data.get('data')); // This should output 100
+        // });
 
         $scope.goback = function(){
             $location.path('/device');

@@ -1,7 +1,12 @@
 Parse.initialize("4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG", "jcAkgMYW30JRqAj7EQYtg4sxa2poD2d1nopy2s9x");
+Parse.serverURL = 'https://hack-space.herokuapp.com/parse';
+// Parse.serverURL = 'http://localhost:1337/parse';
+
 angular.module('hackspace.datamanage',[])
     .controller('DataManageController', function($scope, $location, $rootScope, outputCategories, arduino, philiphue, screen, setNulls){
         //inherit root scope data
+        console.log($rootScope.dataCollection);
+
         $scope.device_name = $rootScope.dataCollection.deviceName;
         $scope.device_id = $rootScope.dataCollection.deviceID;
         $scope.attributes = $rootScope.dataCollection.deviceAttributes;
@@ -310,5 +315,3 @@ angular.module('hackspace.datamanage',[])
         ];
         return setNulls;
     });
-
-

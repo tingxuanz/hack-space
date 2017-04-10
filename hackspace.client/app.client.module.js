@@ -7,8 +7,6 @@ angular.module('hackspace',
     'hackspace.dataview',
     'hackspace.datamanage',
     'hackspace.addnewdevice',
-    'hackspace.editdevice']
+    'hackspace.editdevice',
+    'ngMap']
 );
-
-
-
