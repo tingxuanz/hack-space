@@ -187,12 +187,10 @@ angular.module('hackspace.dataview',[])
             }
         });
 
-        //live query of real time status
         var Status = Parse.Object.extend("RealtimeStatus");
-        var statusQuery = new Parse.Query(Status);
-        statusQuery.equalTo('device_id', device_id);
-        //get initial_status
-        statusQuery.find({
+        var initialStatusQuery = new Parse.Query(Status);
+        initialStatusQuery.equalTo('device_id', device_id);
+        initialStatusQuery.find({
           success: function(results) {
             var initial_status = results.get('data');
             console.log("initial_status", initial_status[0]);
@@ -204,7 +202,10 @@ angular.module('hackspace.dataview',[])
             alert("Error: " + error.code + " " + error.message);
           }
         });
-        //live query for status
+
+        //live query of real time status
+        var statusQuery = new Parse.Query(Status);
+        statusQuery.equalTo('device_id', device_id);
         var subscription = statusQuery.subscribe();
         subscription.on('open', () => {
           console.log('subscription opened');
