@@ -15,11 +15,13 @@ if (!databaseUri) {
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'myAppId',
-  masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
+  appId: process.env.APP_ID || '4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG',
+  masterKey: process.env.MASTER_KEY || 'OU8Fk4O6qeGzl6Ikcg0F9msWdq2iAsor9Vn96jZT', //Add your master key here. Keep it secret!
+  restAPIKey: process.env.REST_API_KEY || 'Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf',
+  javascriptKey: process.env.JAVASCRIPT_KEY || 'jcAkgMYW30JRqAj7EQYtg4sxa2poD2d1nopy2s9x',
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   liveQuery: {
-    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+    classNames: ["RealtimeStatus"] // List of classes to support for query subscriptions
   }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
