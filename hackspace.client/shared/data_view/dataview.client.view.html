@@ -46,7 +46,7 @@
   </div>
 
   <div class="panel" ng-show="tab === 3">
-    <div map-lazy-load="https://maps.google.com/maps/api/js">
+    <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}">
       <ng-map center="-37.799080,144.963115" zoom="16">
         <marker position="-37.799080,144.963115" title="Hello World!"></marker>
       </ng-map>

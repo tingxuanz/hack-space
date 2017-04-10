@@ -5,7 +5,7 @@ Parse.serverURL = 'https://tingxuanz.herokuapp.com/parse';
 
 angular.module('hackspace.dataview',[])
     .controller('DataViewController', function($scope, $location, $routeParams, $http, $rootScope, NgMap){
-
+      $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6-1guqbVE7yZwtNTm3b7P96dcqzBCI2M";
       NgMap.getMap().then(function(map) {
           // console.log(map.getCenter());
           // console.log('markers', map.markers);
@@ -212,7 +212,7 @@ angular.module('hackspace.dataview',[])
         subscription.on('open', () => {
           console.log('subscription opened');
         });
-        
+
         subscription.on('update', (data) => {
           var status = data.get('data');
           console.log(status[0]);
