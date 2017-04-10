@@ -60,6 +60,13 @@ app.use(mountPath, api);
 //   -d '{"data":[0.5]}' \
 //   https://tingxuanz.herokuapp.com/parse/classes/RealtimeStatus/5tKDkZhnRF
 
+// curl -X POST \
+//   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
+//   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
+//   -H "Content-Type: application/json" \
+//   -d '{"device_id":"5tKDkZhnRF", 0:[0.2,0.3]}' \
+//   https://tingxuanz.herokuapp.com/parse/classes/HistoricalData
+
 app.use(serveStatic('./hackspace.client', {'index': ['index.html', 'index.html']}));
 
 var port = process.env.PORT || 1337;
