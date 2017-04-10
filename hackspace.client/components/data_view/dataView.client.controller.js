@@ -192,9 +192,14 @@ angular.module('hackspace.dataview',[])
         var statusQuery = new Parse.Query(Status);
         statusQuery.equalTo('device_id', device_id);
         var subscription = statusQuery.subscribe();
+        subscription.on('open', () => {
+          console.log('subscription opened');
+        });
         subscription.on('update', (data) => {
           var status = data.get('data');
+          console.log(status[0]);
           $scope.status = status[0];
+          console.log("Status", $scope.status);
         });
 
         $scope.goback = function(){
