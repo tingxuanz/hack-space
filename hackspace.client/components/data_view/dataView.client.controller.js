@@ -193,7 +193,8 @@ angular.module('hackspace.dataview',[])
         statusQuery.equalTo('device_id', device_id);
         var subscription = statusQuery.subscribe();
         subscription.on('update', (data) => {
-          console.log('Status', data.get('data')); // This should output 100
+          var status = data.get('data');
+          $scope.status = status[0];
         });
 
         $scope.goback = function(){

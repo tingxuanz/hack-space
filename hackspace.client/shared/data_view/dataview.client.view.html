@@ -15,6 +15,9 @@
       <li class="dataview-toggle" ng-class="{ active:tab === 3 }">
         <a href ng-click="tab = 3">Map</a>
       </li>
+      <li class="dataview-toggle" ng-class="{ active:tab === 4 }">
+        <a href ng-click="tab = 3">Status</a>
+      </li>
     </ul>
   </section>
 
@@ -25,7 +28,7 @@
       <canvas id="dataChart{{$index}}" width="600" height="400"></canvas>
     </div>
   </div>
-  
+
   <div class="panel" ng-show="tab === 2">
     <table class="table table-striped">
       <thead>
@@ -48,6 +51,11 @@
         <marker position="-37.799080,144.963115" title="Hello World!"></marker>
       </ng-map>
     </div>
+  </div>
+
+  <div class="panel" ng-show="tab === 4">
+    <h3>Status:{{status}}</h3>
+    
   </div>
 
 
