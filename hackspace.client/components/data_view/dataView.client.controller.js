@@ -187,16 +187,16 @@ angular.module('hackspace.dataview',[])
             }
         });
 
-        var HistoricalData = Parse.Object.extend("HistoricalData");
-        var initialStatusQuery = new Parse.Query(HistoricalData);
+        var initialStatus = Parse.Object.extend("RealtimeStatus");
+        var initialStatusQuery = new Parse.Query(initialStatus);
         initialStatusQuery.equalTo('device_id', device_id);
         initialStatusQuery.find({
           success: function(results) {
-            // console.log(results);
+            console.log(results);
             var initial_status = results[0].get("data");
             console.log("initial_status", initial_status);
             $scope.$apply(function () {
-              $scope.device_initial_status = initial_status[initial_status.length - 1];
+              $scope.device_status = initial_status[0];
             });
           },
           error: function(error) {
