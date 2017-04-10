@@ -192,10 +192,11 @@ angular.module('hackspace.dataview',[])
         initialStatusQuery.equalTo('device_id', device_id);
         initialStatusQuery.find({
           success: function(results) {
+            console.log(results);
             var initial_status = results.get('data_0');
             console.log("initial_status", initial_status[initial_status.length - 1]);
             $scope.$apply(function () {
-              $scope.device_status = initial_status[initial_status.length - 1];
+              $scope.device_initial_status = initial_status[initial_status.length - 1];
             });
           },
           error: function(error) {
