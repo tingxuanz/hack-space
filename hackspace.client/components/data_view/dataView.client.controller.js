@@ -191,6 +191,19 @@ angular.module('hackspace.dataview',[])
         var Status = Parse.Object.extend("RealtimeStatus");
         var statusQuery = new Parse.Query(Status);
         statusQuery.equalTo('device_id', device_id);
+        //get initial_status
+        statusQuery.find({
+          success: function(results) {
+            var initial_status = results.get('data');
+            $scope.$apply(function () {
+              $scope.device_status = initial_status[0];
+            });
+          },
+          error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+          }
+        });
+        //live query for status
         var subscription = statusQuery.subscribe();
         subscription.on('open', () => {
           console.log('subscription opened');
@@ -199,7 +212,7 @@ angular.module('hackspace.dataview',[])
           var status = data.get('data');
           console.log(status[0]);
           $scope.$apply(function () {
-            $scope.device_status = status;
+            $scope.device_status = status[0];
           });
         });
 
