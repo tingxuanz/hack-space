@@ -195,6 +195,7 @@ angular.module('hackspace.dataview',[])
         statusQuery.find({
           success: function(results) {
             var initial_status = results.get('data');
+            console.log("initial_status", initial_status[0]);
             $scope.$apply(function () {
               $scope.device_status = initial_status[0];
             });
