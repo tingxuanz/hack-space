@@ -7,9 +7,9 @@ angular.module('hackspace.dataview',[])
     .controller('DataViewController', function($scope, $location, $routeParams, $http, $rootScope, NgMap){
       $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6-1guqbVE7yZwtNTm3b7P96dcqzBCI2M";
       NgMap.getMap().then(function(map) {
-          // console.log(map.getCenter());
-          // console.log('markers', map.markers);
-          // console.log('shapes', map.shapes);
+          console.log(map.getCenter());
+          console.log('markers', map.markers);
+          console.log('shapes', map.shapes);
         });
         //query the device name based on the device id
         var url = "http://api.openweathermap.org/data/2.5/";
