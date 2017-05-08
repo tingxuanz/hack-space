@@ -1,5 +1,5 @@
 Parse.initialize("4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG", "jcAkgMYW30JRqAj7EQYtg4sxa2poD2d1nopy2s9x");
-Parse.serverURL = 'https://tingxuanz.herokuapp.com/parse';
+Parse.serverURL = 'https://hack-space.herokuapp.com/parse';
 // Parse.serverURL = 'http://localhost:1337/parse';
 
 angular.module('hackspace.login',[])

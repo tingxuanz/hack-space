@@ -1,6 +1,6 @@
 Parse.initialize("4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG", "jcAkgMYW30JRqAj7EQYtg4sxa2poD2d1nopy2s9x");
-// Parse.serverURL = 'https://hack-space.herokuapp.com/parse';
-Parse.serverURL = 'https://tingxuanz.herokuapp.com/parse';
+Parse.serverURL = 'https://hack-space.herokuapp.com/parse';
+
 // Parse.serverURL = 'http://localhost:1337/parse';
 
 angular.module('hackspace.dataview',[])
@@ -48,6 +48,33 @@ angular.module('hackspace.dataview',[])
                         var requestUrl = url + url_weather + $scope.device_location + url_options;
                         var forecastUrl = url + url_forecast + $scope.device_location + url_options;
                         $scope.forecast = [];
+                        $http({
+                            method : "GET",
+                            url : requestUrl
+                        }).then(function mySuccess(response) {
+                            $scope.weather = response.data.weather[0].main;
+                            $scope.currentTemp = response.data.main.temp;
+                        }, function myError(response) {
+                            $scope.myWelcome = response;
+                        });
+                        $http({
+                            method : "GET",
+                            url : forecastUrl
+                        }).then(function mySuccess(response) {
+                            var forecastDetail = response.data.list;
+                            for(var i = 0; i < 7; i++){
+                                var forecastObj = {
+                                    timestamp: forecastDetail[i].dt_txt.substr(10,11),
+                                    forecastWeather: forecastDetail[i].weather[0].main,
+                                    forecastTemp: forecastDetail[i].main.temp
+                                };
+
+                                $scope.forecast.push(forecastObj);
+                            }
+                        }, function myError(response) {
+                            $scope.myWelcome = response;
+                        });
+                        
                         // Refresh page
                         var Data = Parse.Object.extend("EnvironmentalData");
                         var dataQuery = new Parse.Query(Data);
@@ -140,32 +167,7 @@ angular.module('hackspace.dataview',[])
                                         $scope.tablehead = $scope.attributes;
                                         $scope.tablehead.unshift("createdAt");
 
-                                        $http({
-                                            method : "GET",
-                                            url : requestUrl
-                                        }).then(function mySuccess(response) {
-                                            $scope.weather = response.data.weather[0].main;
-                                            $scope.currentTemp = response.data.main.temp;
-                                        }, function myError(response) {
-                                            $scope.myWelcome = response;
-                                        });
-                                        $http({
-                                            method : "GET",
-                                            url : forecastUrl
-                                        }).then(function mySuccess(response) {
-                                            var forecastDetail = response.data.list;
-                                            for(var i = 0; i < 7; i++){
-                                                var forecastObj = {
-                                                    timestamp: forecastDetail[i].dt_txt.substr(10,11),
-                                                    forecastWeather: forecastDetail[i].weather[0].main,
-                                                    forecastTemp: forecastDetail[i].main.temp
-                                                };
 
-                                                $scope.forecast.push(forecastObj);
-                                            }
-                                        }, function myError(response) {
-                                            $scope.myWelcome = response;
-                                        });
 
                                         // $rootScope.dataCollection = {
                                         //     deviceName: $scope.device_name,
