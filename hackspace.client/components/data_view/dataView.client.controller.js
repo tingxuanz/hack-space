@@ -46,8 +46,8 @@ angular.module('hackspace.dataview',[])
                         };
 
                         var requestUrl = url + url_weather + $scope.device_location + url_options;
-                        var forecastUrl = url + url_forecast + $scope.device_location + url_options;
-                        $scope.forecast = [];
+                        // var forecastUrl = url + url_forecast + $scope.device_location + url_options;
+                        // $scope.forecast = [];
                         $http({
                             method : "GET",
                             url : requestUrl
@@ -57,24 +57,24 @@ angular.module('hackspace.dataview',[])
                         }, function myError(response) {
                             $scope.myWelcome = response;
                         });
-                        $http({
-                            method : "GET",
-                            url : forecastUrl
-                        }).then(function mySuccess(response) {
-                            var forecastDetail = response.data.list;
-                            for(var i = 0; i < 7; i++){
-                                var forecastObj = {
-                                    timestamp: forecastDetail[i].dt_txt.substr(10,11),
-                                    forecastWeather: forecastDetail[i].weather[0].main,
-                                    forecastTemp: forecastDetail[i].main.temp
-                                };
+                        // $http({
+                        //     method : "GET",
+                        //     url : forecastUrl
+                        // }).then(function mySuccess(response) {
+                        //     var forecastDetail = response.data.list;
+                        //     for(var i = 0; i < 7; i++){
+                        //         var forecastObj = {
+                        //             timestamp: forecastDetail[i].dt_txt.substr(10,11),
+                        //             forecastWeather: forecastDetail[i].weather[0].main,
+                        //             forecastTemp: forecastDetail[i].main.temp
+                        //         };
+                        //
+                        //         $scope.forecast.push(forecastObj);
+                        //     }
+                        // }, function myError(response) {
+                        //     $scope.myWelcome = response;
+                        // });
 
-                                $scope.forecast.push(forecastObj);
-                            }
-                        }, function myError(response) {
-                            $scope.myWelcome = response;
-                        });
-                        
                         // Refresh page
                         var Data = Parse.Object.extend("EnvironmentalData");
                         var dataQuery = new Parse.Query(Data);
