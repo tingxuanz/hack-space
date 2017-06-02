@@ -225,6 +225,7 @@ angular.module('hackspace.datamanage',[])
                         // newRule.set("BookedDay", $scope.date.selectedOption.name);
                         // newRule.set("BookedHour", $scope.time.selectedOption.name);
                         newRule.set("targetDevice", $scope.device_name);
+                        newRule.set("targetDeviceId", $scope.device_id);
                         newRule.save(null, {
                             success: function(result) {
                                 // Execute any logic that should take place after the object is saved.

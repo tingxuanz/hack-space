@@ -17,9 +17,24 @@ Parse.Cloud.define('checkRule', function(req, res) {
 });
 
 Parse.Cloud.afterSave('RealtimeStatus', function(request) {
-  console.log("show req");
-  console.log(request);
-  console.log("req done");
+
+  var device_id = request.object.get('device_id');
+  var status_data = request.object.get('data');
+  console.log("id and data");
+  console.log(device_id);
+  console.log(status_data);
+
+  var ruleQuery = new Parse.Query("Rule");
+  ruleQuery.equalTo('targetDeviceId', device_id);
+  ruleQuery.find({
+  success: function(results) {
+    console.log("get rule");
+    console.log(results);
+  },
+  error: function(error) {
+    console.log("Error: " + error.code + " " + error.message)
+  }
+});
 
   var content = "test"
   T.post('statuses/update', { status: content }, function(err, data, response) {
