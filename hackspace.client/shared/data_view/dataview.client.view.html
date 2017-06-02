@@ -9,21 +9,21 @@
       <li class="dataview-toggle" ng-class="{ active:tab === 1 }">
         <a href ng-click="tab = 1">Location</a>
       </li>
-      <li class="dataview-toggle" ng-class="{ active:tab === 2 }">
+      <!-- <li class="dataview-toggle" ng-class="{ active:tab === 2 }">
         <a href ng-click="tab = 2">Table</a>
       </li>
       <li class="dataview-toggle" ng-class="{ active:tab === 3 }">
         <a href ng-click="tab = 3">Chart</a>
-      </li>
-      <li class="dataview-toggle" ng-class="{ active:tab === 4 }">
-        <a href ng-click="tab = 4">Status</a>
+      </li> -->
+      <li class="dataview-toggle" ng-class="{ active:tab === 2 }">
+        <a href ng-click="tab = 2">Status</a>
       </li>
     </ul>
   </section>
 
   <div class="panel" ng-show="tab === 1">
     <ng-map center="-37.799080,144.963115" zoom="16">
-      
+
       <custom-marker id="bin" position="-37.799080,144.963115">
         <div>
           <h4 style="color: black">{{device_status * 100 + "%"}}</h3>
@@ -34,7 +34,7 @@
     <br>
   </div>
 
-  <div class="panel" ng-show="tab === 2">
+  <!-- <div class="panel" ng-show="tab === 2">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -53,16 +53,16 @@
 
   <div class="panel" ng-show="tab === 3">
     <div ng-repeat="label in attributes" ng-if="label !== 'createdAt'">
-      <!--Chart here-->
+
       <h4 class="device_heading">{{label}}</h4>
       <canvas id="dataChart{{$index}}" width="600" height="400"></canvas>
     </div>
     <br>
-  </div>
+  </div> -->
 
 
 
-  <div class="panel text-center" ng-show="tab === 4">
+  <div class="panel text-center" ng-show="tab === 2">
     <div class="icon-trash">
       <div class="trash-lid" ng-style="bin_style"></div>
       <div id="bin-container"class="trash-container" ng-style="bin_style"></div>
@@ -70,15 +70,13 @@
       <div class="trash-line-2"></div>
       <div class="trash-line-3"></div>
     </div>
-    <h3>Status:{{device_status}}</h3>
-    <br>
   </div>
 
 
 
 
-  <h4>Weather: {{device_location}}</h4>
-  <h5 style="margin-top: 1em;"><span style="float: left;">Condition: {{weather}}</span> <span style="float: right">Current temperature: {{currentTemp}} &#8451</span></h5>
+  <!-- <h4>Weather: {{device_location}}</h4>
+  <h5 style="margin-top: 1em;"><span style="float: left;">Condition: {{weather}}</span> <span style="float: right">Current temperature: {{currentTemp}} &#8451</span></h5> -->
 
   <!-- <h4>Weather forecast</h4>
   <div ng-repeat="obj in forecast" style="float: left; margin-left: 5px; margin-right: 5px;">
