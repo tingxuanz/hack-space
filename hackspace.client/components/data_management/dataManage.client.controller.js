@@ -4,7 +4,7 @@ Parse.serverURL = 'https://hack-space.herokuapp.com/parse';
 // Parse.serverURL = 'http://localhost:1337/parse';
 
 angular.module('hackspace.datamanage',[])
-    .controller('DataManageController', function($scope, $location, $rootScope, outputCategories, arduino, philiphue, screen, setNulls){
+    .controller('DataManageController', function($scope, $location, $rootScope, outputCategories, arduino, philiphue, screen, twitter, setNulls){
         //inherit root scope data
         console.log($rootScope.dataCollection);
 
@@ -24,7 +24,8 @@ angular.module('hackspace.datamanage',[])
                                 availableOptions: [
                                     {id: '0', name: 'Select data type'},
                                     {id: '1', name: 'Instagram_hashtag'},
-                                    {id: '2', name: 'Instagram_number'}
+                                    {id: '2', name: 'Instagram_number'},
+                                    {id: '3', name: 'Status'}
                                 ],
                                 selectedOption: {id: '0', name: 'Select data type'}
                             },
@@ -50,38 +51,38 @@ angular.module('hackspace.datamanage',[])
                                 selectedOption: {id: '0', name: 'Select logic gate'}
                             }
             }
-           ,{
-                id: 'choice2',
-                datatype:   {
-                    availableOptions: [
-                        {id: '0', name: 'Select data type'},
-                        {id: '1', name: 'Instagram_hashtag'},
-                        {id: '2', name: 'Instagram_number'}
-                    ],
-                    selectedOption: {id: '0', name: 'Select data type'}
-                },
-                operation:  {
-                    availableOptions: [
-                        {id: '0', name: 'Select operation'},
-                        {id: '1', name: '<'},
-                        {id: '2', name: '<='},
-                        {id: '3', name: '=='},
-                        {id: '4', name: '>='},
-                        {id: '5', name: '>'},
-                        {id: '6', name: '!='}
-                    ],
-                    selectedOption: {id: '0', name: 'Select operation'}
-                },
-                logicgate:  {
-                    availableOptions: [
-                        {id: '0', name: 'Select logic gate'},
-                        {id: '1', name: 'AND'},
-                        {id: '2', name: 'OR'},
-                        {id: '3', name: 'NOT'}
-                    ],
-                    selectedOption: {id: '0', name: 'Select logic gate'}
-                }
-            }
+          //  ,{
+          //       id: 'choice2',
+          //       datatype:   {
+          //           availableOptions: [
+          //               {id: '0', name: 'Select data type'},
+          //               {id: '1', name: 'Instagram_hashtag'},
+          //               {id: '2', name: 'Instagram_number'}
+          //           ],
+          //           selectedOption: {id: '0', name: 'Select data type'}
+          //       },
+          //       operation:  {
+          //           availableOptions: [
+          //               {id: '0', name: 'Select operation'},
+          //               {id: '1', name: '<'},
+          //               {id: '2', name: '<='},
+          //               {id: '3', name: '=='},
+          //               {id: '4', name: '>='},
+          //               {id: '5', name: '>'},
+          //               {id: '6', name: '!='}
+          //           ],
+          //           selectedOption: {id: '0', name: 'Select operation'}
+          //       },
+          //       logicgate:  {
+          //           availableOptions: [
+          //               {id: '0', name: 'Select logic gate'},
+          //               {id: '1', name: 'AND'},
+          //               {id: '2', name: 'OR'},
+          //               {id: '3', name: 'NOT'}
+          //           ],
+          //           selectedOption: {id: '0', name: 'Select logic gate'}
+          //       }
+          //   }
         ];
 
         // Add attributes in the datatype dropdown list
@@ -98,32 +99,32 @@ angular.module('hackspace.datamanage',[])
         }
 
 
-        $scope.date = {
-            availableOptions: [
-                {id: '0', name: 'Select day'},
-                {id: '1', name: 'Monday'},
-                {id: '2', name: 'Tuesday'},
-                {id: '3', name: 'Wednesday'},
-                {id: '4', name: 'Thursday'},
-                {id: '5', name: 'Friday'}
-            ],
-            selectedOption: {id: '0', name: 'Select day'}
-        };
-        $scope.time = {
-            availableOptions: [
-                {id: '0', name: 'Select time'},
-                {id: '1', name: '9:00'},
-                {id: '2', name: '10:00'},
-                {id: '3', name: '11:00'},
-                {id: '4', name: '12:00'},
-                {id: '5', name: '13:00'},
-                {id: '6', name: '14:00'},
-                {id: '7', name: '15:00'},
-                {id: '8', name: '16:00'},
-                {id: '9', name: '17:00'}
-            ],
-            selectedOption: {id: '0', name: 'Select time'}
-        };
+        // $scope.date = {
+        //     availableOptions: [
+        //         {id: '0', name: 'Select day'},
+        //         {id: '1', name: 'Monday'},
+        //         {id: '2', name: 'Tuesday'},
+        //         {id: '3', name: 'Wednesday'},
+        //         {id: '4', name: 'Thursday'},
+        //         {id: '5', name: 'Friday'}
+        //     ],
+        //     selectedOption: {id: '0', name: 'Select day'}
+        // };
+        // $scope.time = {
+        //     availableOptions: [
+        //         {id: '0', name: 'Select time'},
+        //         {id: '1', name: '9:00'},
+        //         {id: '2', name: '10:00'},
+        //         {id: '3', name: '11:00'},
+        //         {id: '4', name: '12:00'},
+        //         {id: '5', name: '13:00'},
+        //         {id: '6', name: '14:00'},
+        //         {id: '7', name: '15:00'},
+        //         {id: '8', name: '16:00'},
+        //         {id: '9', name: '17:00'}
+        //     ],
+        //     selectedOption: {id: '0', name: 'Select time'}
+        // };
 
 
 
@@ -139,6 +140,8 @@ angular.module('hackspace.datamanage',[])
                 $scope.types = philiphue;
             } else if($scope.itemsuper.text == "Screen") {
                 $scope.types = screen;
+            } else if($scope.itemsuper.text == "Twitter") {
+                $scope.types = twitter;
             } else {
                 $scope.types = setNulls;
             }
@@ -152,7 +155,8 @@ angular.module('hackspace.datamanage',[])
                     availableOptions: [
                         {id: '0', name: 'Select data type'},
                         {id: '1', name: 'Instagram_hashtag'},
-                        {id: '2', name: 'Instagram_number'}
+                        {id: '2', name: 'Instagram_number'},
+                        {id: '3', name: 'Status'}
                     ],
                     selectedOption: {id: '0', name: 'Select data type'}
                 },
@@ -215,16 +219,16 @@ angular.module('hackspace.datamanage',[])
                                 newRule.set("LogicGate" + newID, $scope.choices[i].logicgate.selectedOption.name);
                             }
                         }
-                        newRule,set("RuleCount", counter);
+                        newRule.set("RuleCount", counter);
                         newRule.set("OutputType", $scope.itemsuper.text);
                         newRule.set("OutputAction", $scope.selectedAction.text);
-                        newRule.set("BookedDay", $scope.date.selectedOption.name);
-                        newRule.set("BookedHour", $scope.time.selectedOption.name);
+                        // newRule.set("BookedDay", $scope.date.selectedOption.name);
+                        // newRule.set("BookedHour", $scope.time.selectedOption.name);
                         newRule.set("targetDevice", $scope.device_name);
                         newRule.save(null, {
                             success: function(result) {
                                 // Execute any logic that should take place after the object is saved.
-                                alert("Rule created. It will be activate on scheduled time. Thanks for using!");
+                                alert("Rule created. Thanks for using!");
                             },
                             error: function(result,error) {
                                 // Execute any logic that should take place if the save fails.
@@ -256,6 +260,10 @@ angular.module('hackspace.datamanage',[])
             {
                 value: 'outputCategory_003',
                 text: 'Screen'
+            },
+            {
+                value: 'outputCategory_004',
+                text: 'Twitter'
             }
         ];
         return categories;
@@ -305,6 +313,16 @@ angular.module('hackspace.datamanage',[])
             }
         ];
         return screen;
+    })
+    .factory('twitter', function(){
+        var twitter = {};
+        twitter.cast = [
+            {
+                value: 'screenCategory_001',
+                text: 'New post'
+            }
+        ];
+        return twitter;
     })
     .factory('setNulls',function(){
         var setNulls = {};

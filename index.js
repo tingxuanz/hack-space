@@ -57,8 +57,8 @@ app.use(mountPath, api);
 //   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
 //   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
 //   -H "Content-Type: application/json" \
-//   -d '{"data":[0.5]}' \
-//   https://hack-space.herokuapp.com/parse/classes/RealtimeStatus/5tKDkZhnRF
+//   -d '' \
+//   http://localhost:1337/parse/functions/
 
 // curl -X POST \
 //   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
@@ -76,7 +76,7 @@ app.use(mountPath, api);
 //   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
 //   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
 //   -H "Content-Type: application/json" \
-//   https://hack-space.herokuapp.com/parse/functions/hello
+//   https://localhost:1337/parse/functions/hello
 
 app.use(serveStatic('./hackspace.client', {'index': ['index.html', 'index.html']}));
 
