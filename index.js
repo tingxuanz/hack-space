@@ -53,12 +53,14 @@ app.use(mountPath, api);
 // });
 
 
-// curl -X PUT \
-//   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
-//   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
-//   -H "Content-Type: application/json" \
-//   -d '' \
-//   http://localhost:1337/parse/functions/
+
+
+  // curl -X PUT \
+  // -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
+  // -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
+  // -H "Content-Type: application/json" \
+  // -d '{"data":[0.1]}' \
+  // https://hack-space.herokuapp.com/parse/classes/RealtimeStatus/5tKDkZhnRF
 
 // curl -X POST \
 //   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
