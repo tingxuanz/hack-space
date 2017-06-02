@@ -57,23 +57,7 @@ angular.module('hackspace.dataview',[])
                         }, function myError(response) {
                             $scope.myWelcome = response;
                         });
-                        // $http({
-                        //     method : "GET",
-                        //     url : forecastUrl
-                        // }).then(function mySuccess(response) {
-                        //     var forecastDetail = response.data.list;
-                        //     for(var i = 0; i < 7; i++){
-                        //         var forecastObj = {
-                        //             timestamp: forecastDetail[i].dt_txt.substr(10,11),
-                        //             forecastWeather: forecastDetail[i].weather[0].main,
-                        //             forecastTemp: forecastDetail[i].main.temp
-                        //         };
-                        //
-                        //         $scope.forecast.push(forecastObj);
-                        //     }
-                        // }, function myError(response) {
-                        //     $scope.myWelcome = response;
-                        // });
+
 
                         // Refresh page
                         var Data = Parse.Object.extend("EnvironmentalData");
@@ -199,6 +183,20 @@ angular.module('hackspace.dataview',[])
             console.log("initial_status", initial_status);
             $scope.$apply(function () {
               $scope.device_status = initial_status[0];
+
+              var binElement = document.getElementById('bin-container');
+              var wrappedBinElement = angular.element(binElement);
+              wrappedBinElement.attr("bin-status", $scope.device_status * 100 + "%");
+
+              if ($scope.device_status <= 0.3) {
+                $scope.bin_style = {"background-color": "green"}
+              } else if ($scope.device_status > 0.3 && $scope.device_status <= 0.7) {
+                $scope.bin_style = {"background-color": "orange"}
+              } else {
+                $scope.bin_style = {
+                  "background-color": "red"
+                }
+              }
             });
           },
           error: function(error) {
@@ -220,6 +218,18 @@ angular.module('hackspace.dataview',[])
           console.log(status[0]);
           $scope.$apply(function () {
             $scope.device_status = status[0];
+            var binElement = document.getElementById('bin-container');
+            var wrappedBinElement = angular.element(binElement);
+            wrappedBinElement.attr("bin-status", $scope.device_status * 100 + "%");
+            if ($scope.device_status <= 0.3) {
+              $scope.bin_style = {"background-color": "green"}
+            } else if ($scope.device_status > 0.3 && $scope.device_status <= 0.7) {
+              $scope.bin_style = {"background-color": "orange"}
+            } else {
+              $scope.bin_style = {
+                "background-color": "red"
+              }
+            }
           });
         });
 
