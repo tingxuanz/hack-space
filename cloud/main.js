@@ -32,9 +32,11 @@ Parse.Cloud.afterSave('RealtimeStatus', function(request) {
       var threshold = results[length - 1].get('DataValue1');
 
       if (status_data === threshold) {
-        var content = "threshold:" + threshold + "has reached."
+        var date = new Date();
+        date_string = date.toString();
+        var content = "Threshold: " + threshold + " of device " + device_id + " has reached at " + date_string;
         T.post('statuses/update', { status: content }, function(err, data, response) {
-          console.log(data)
+          console.log(data);
         });
       }
     },
