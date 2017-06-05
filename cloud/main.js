@@ -29,7 +29,8 @@ Parse.Cloud.afterSave('RealtimeStatus', function(request) {
   ruleQuery.find({
   success: function(results) {
     console.log("get rule");
-    console.log(results);
+    var length = results.length;
+    console.log(results[length - 1]);
   },
   error: function(error) {
     console.log("Error: " + error.code + " " + error.message)
