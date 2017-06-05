@@ -13,7 +13,7 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
-  databaseURI: databaseUri || 'mongodb://heroku_x66qj017:4pjni7fl5snfu236t36lgefflj@ds141450.mlab.com:41450',
+  databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || '4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG',
   masterKey: process.env.MASTER_KEY || 'OU8Fk4O6qeGzl6Ikcg0F9msWdq2iAsor9Vn96jZT', //Add your master key here. Keep it secret!
@@ -37,48 +37,7 @@ var app = express();
 var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
 
-// // Parse Server plays nicely with the rest of your web routes
-// app.get('/', function(req, res) {
-//   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
-// });
-//
-// // There will be a test page available on the /test path of your server url
-// // Remove this before launching your app
-// app.get('/test', function(req, res) {
-//   res.sendFile(path.join(__dirname, '/public/test.html'));
-// });
-//
-// app.get('/signup', function(req, res) {
-//   res.sendFile(path.join(__dirname, '/public/signup.html'));
-// });
 
-
-
-
-  // curl -X PUT \
-  // -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
-  // -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
-  // -H "Content-Type: application/json" \
-  // -d '{"data":[0.1]}' \
-  // https://hack-space.herokuapp.com/parse/classes/RealtimeStatus/5tKDkZhnRF
-
-// curl -X POST \
-//   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
-//   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
-//   -H "Content-Type: application/json" \
-//   -d '{"device_id":"5tKDkZhnRF", 0:[0.2,0.3]}' \
-//   https://tingxuanz.herokuapp.com/parse/classes/HistoricalData
-
-// curl -X GET \
-//   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
-//   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
-//   https://tingxuanz.herokuapp.com/parse/classes/HistoricalData
-
-// curl -X POST \
-//   -H "X-Parse-Application-Id: 4QKhC5sL4BCBui2aNuiac4mSuOTXJILnOf3MP1fG" \
-//   -H "X-Parse-REST-API-Key: Uov2RPdBByNcTGZ0EvLqqTCSuFqylkJv8jjlwywf" \
-//   -H "Content-Type: application/json" \
-//   https://localhost:1337/parse/functions/hello
 
 app.use(serveStatic('./hackspace.client', {'index': ['index.html', 'index.html']}));
 
