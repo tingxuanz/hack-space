@@ -1,5 +1,6 @@
 var Twit = require('twit');
 
+//configuration of the twitter api
 var T = new Twit({
 consumer_key:         '8A5ftN1w5QPsHvEqCjYqOtiXo',
 consumer_secret:      'KeO62KUcFemMazCCRTbCZwT5StoaaFPhuGq2FaCG6KLamqKVJl',
@@ -12,10 +13,7 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 
-Parse.Cloud.define('checkRule', function(req, res) {
-
-});
-
+//event is triggered every time new status data is saved.
 Parse.Cloud.afterSave('RealtimeStatus', function(request) {
 
   var device_id = request.object.get('device_id');
@@ -25,25 +23,24 @@ Parse.Cloud.afterSave('RealtimeStatus', function(request) {
   console.log(status_data);
 
   var ruleQuery = new Parse.Query("Rule");
+  //get rules that belong to current device
   ruleQuery.equalTo('targetDeviceId', device_id);
   ruleQuery.find({
-  success: function(results) {
-    
-    var length = results.length;
-    var threshold = results[length - 1].get('DataValue1');
-    console.log("threshold");
-    if (status_data === threshold) {
-      console.log(threshold);
-    }
-  },
-  error: function(error) {
-    console.log("Error: " + error.code + " " + error.message)
-  }
-});
+    success: function(results) {
+      var length = results.length;
+      //get the threshold in the lastest rule.
+      var threshold = results[length - 1].get('DataValue1');
 
-  var content = "test"
-  T.post('statuses/update', { status: content }, function(err, data, response) {
-    console.log(data)
+      if (status_data === threshold) {
+        var content = "threshold:" + threshold + "has reached."
+        T.post('statuses/update', { status: content }, function(err, data, response) {
+          console.log(data)
+        });
+      }
+    },
+    error: function(error) {
+      console.log("Error: " + error.code + " " + error.message)
+    }
   });
 
 });
