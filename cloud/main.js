@@ -19,7 +19,7 @@ Parse.Cloud.define('checkRule', function(req, res) {
 Parse.Cloud.afterSave('RealtimeStatus', function(request) {
 
   var device_id = request.object.get('device_id');
-  var status_data = request.object.get('data');
+  var status_data = request.object.get('data')[0] * 100 + "%";
   console.log("id and data");
   console.log(device_id);
   console.log(status_data);
@@ -28,9 +28,13 @@ Parse.Cloud.afterSave('RealtimeStatus', function(request) {
   ruleQuery.equalTo('targetDeviceId', device_id);
   ruleQuery.find({
   success: function(results) {
-    console.log("get rule");
+    
     var length = results.length;
-    console.log(results[length - 1]);
+    var threshold = results[length - 1].get('DataValue1');
+    console.log("threshold");
+    if (status_data === threshold) {
+      console.log(threshold);
+    }
   },
   error: function(error) {
     console.log("Error: " + error.code + " " + error.message)
